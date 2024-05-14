@@ -156,10 +156,10 @@ const onSubmit = async () => {
   await unref(formRef)?.validate()
   try {
     if (isEidtUser.value) {
-      await adminApi.updateUser({
-        userId: props.userInfo?.userId,
-        nickname: data.nickname,
-      })
+      // await adminApi.updateUser({
+      //   // userId: props.userInfo?.userId,
+      //   // nickname: data.nickname,
+      // })
       if (userStore.userInfo?.userId === props.userInfo?.userId) {
         userStore.setUserInfo({
           nickname: data.nickname,

@@ -1,22 +1,18 @@
-const date = new Date()
+
 export const detailConfig = [
-  { label: '用户名', key: 'username' },
-  { label: '姓名', key: 'nickname' },
+  { label: '房间号', key: 'room' },
   {
-    label: '性别',
-    key: 'sex',
-    formatter: (val: any) => ['未知', '男', '女'][val],
+    label: '模式',
+    key: 'mode',
+    formatter: (val: any) => ['制冷', '制暖'][val],
+  },
+  { label: '风速', key: 'speed' },
+  {
+    label: '温度',
+    key: 'temperature',
   },
   {
-    label: '年龄',
-    key: 'age',
-  },
-  {
-    label: '状态',
-    key: 'state',
-  },
-  {
-    label: '权限',
-    key: 'roles',
+    label: '在线状态',
+    key: 'onlineStatus',
   },
 ]

@@ -30,7 +30,7 @@
   "[typescript]": {
     // "editor.defaultFormatter": "johnsoncodehk.vscode-typescript-vue-plugin"
     // "editor.defaultFormatter": "vscode.typescript-language-features",
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

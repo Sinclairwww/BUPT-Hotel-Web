@@ -32,11 +32,14 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "qs": "^6.10.3",
     "screenfull": "^6.0.2",
+    "v3-carousel": "^2.0.3",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
+    "@types/js-md5": "^0.7.2",
     "@types/node": "^17.0.21",
+    "@types/nprogress": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
     "@vitejs/plugin-vue": "^2.2.4",

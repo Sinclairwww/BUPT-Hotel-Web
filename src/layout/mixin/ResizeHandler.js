@@ -1,3 +1,5 @@
+// 处理屏幕大小变化
+
 import store from '@/store'
 
 const { body } = document

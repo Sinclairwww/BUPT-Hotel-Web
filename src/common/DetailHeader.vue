@@ -1,3 +1,4 @@
+<!-- 空调详情页页头 -->
 <template>
   <div class="page-detail-header">
     <span class="title">{{ props.title || $route.meta.title }}</span>

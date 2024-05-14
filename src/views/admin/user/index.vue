@@ -7,7 +7,7 @@
       :filter-list-options="filterListOptions"
     >
       <template #query-right>
-        <el-button type="primary" @click="onAddUser">添加用户</el-button>
+        <el-button type="primary" @click="onAddUser">添加</el-button>
       </template>
       <template #columns-append>
         <el-table-column label="状态" width="80">
@@ -35,22 +35,7 @@
               @click="onUpdateUser(scope.row)"
               >编辑</el-button
             >
-            <el-button
-              v-if="permissionStore.getAuths.back_user_setRole"
-              type="primary"
-              link
-              @click="onSetRole(scope.row)"
-              >角色设置</el-button
-            >
-            <el-popconfirm
-              v-if="permissionStore.getAuths.back_user_startstop"
-              :title="`此操作将重置该用户密码为123456，是否继续?`"
-              @confirm="onResetPwd(scope.row)"
-            >
-              <template #reference>
-                <el-button type="primary" link>重置密码</el-button>
-              </template>
-            </el-popconfirm>
+
             <el-popconfirm
               v-if="permissionStore.getAuths.back_user_startstop"
               confirm-button-text="确定"
@@ -152,14 +137,14 @@ function onAddUser() {
 function onReload() {
   init()
 }
-async function onResetPwd(row: any) {
-  try {
-    await adminApi.resetPassword(row.userId)
-    ElMessage.success('重置密码成功')
-  } catch (err: any) {
-    ElMessage.error(err?.message)
-  }
-}
+// async function onResetPwd(row: any) {
+//   try {
+//     await adminApi.resetPassword(row.userId)
+//     ElMessage.success('重置密码成功')
+//   } catch (err: any) {
+//     ElMessage.error(err?.message)
+//   }
+// }
 //#endregion
 </script>
 

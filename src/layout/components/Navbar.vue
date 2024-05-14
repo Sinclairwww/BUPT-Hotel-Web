@@ -22,8 +22,6 @@
 <script lang="ts" setup>
 import Breadcrumb from './Breadcrumb/index.vue'
 import Hamburger from './Hamburger/index.vue'
-// import Screenfull from './Screenfull/index.vue'
-// import SizeSelect from './SizeSelect/index.vue'
 import PersonalCenter from './PersonalCenter.vue'
 import { useAppStore } from '@/store/modules/app'
 const appStore = useAppStore()

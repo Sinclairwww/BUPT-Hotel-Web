@@ -42,7 +42,6 @@ const userPhoto = computed(() => userStore.getUserInfo?.photo)
 const updatePwdDialogVisible = ref(false)
 const menuList = reactive([
   { title: '首页', link: '/', divided: false },
-  { title: '个人信息', link: '/personal/info', divided: false },
   { title: '修改密码', name: 'updatePwd', divided: false },
   { title: '退出', name: 'exit', link: '/login', divided: true },
 ])

@@ -8,9 +8,9 @@
     <template #columns-append>
       <el-table-column label="操作" fixed="right">
         <template #default="scope">
-          <el-button type="primary" link @click="onGoDetail(scope.row)"
-            >订单详情</el-button
-          >
+          <el-button type="primary" link @click="onGoDetail(scope.row)">
+            空调详情
+          </el-button>
         </template>
       </el-table-column>
     </template>
@@ -29,41 +29,16 @@ const router = useRouter()
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const bindInit = ref(function () {})
 const tableColumns = ref([
-  {
-    label: '订单编号',
-    prop: 'orderNo',
-  },
-  {
-    label: '财务订单编号',
-    prop: 'finOrderNo',
-  },
-  {
-    label: '提交时间',
-    prop: 'submitDatetime',
-  },
-  {
-    label: '手机号',
-    prop: 'telphone',
-    // formatter: (row: any, column: any, value: any) => {
-    // },
-  },
-  {
-    label: '价格',
-    prop: 'money',
-  },
-  {
-    label: '来源',
-    prop: 'source',
-  },
-  {
-    label: '状态',
-    prop: 'status',
-  },
+  { label: '房间号', prop: 'room' },
+  { label: '模式', prop: 'mode' },
+  { label: '风速', prop: 'speed' },
+  { label: '温度', prop: 'temperature' },
+  { label: '在线状态', prop: 'onlineState' },
 ])
 const filterFields = ref([
   {
-    label: '手机号',
-    model: 'telphone',
+    label: '房间号筛选',
+    model: 'room',
     componentName: 'el-input',
     componentProps: {
       placeholder: '',
@@ -72,8 +47,8 @@ const filterFields = ref([
     },
   },
   {
-    label: '来源',
-    model: 'source',
+    label: '模式筛选',
+    model: 'mode',
     componentName: 'el-select',
     componentProps: {
       placeholder: '',
@@ -82,11 +57,9 @@ const filterFields = ref([
   },
 ])
 const filterListOptions = ref({
-  source: [
-    { id: 1, label: 'App' },
-    { id: 2, label: '腾讯' },
-    { id: 3, label: '抖音' },
-    { id: 4, label: '线下开单' },
+  mode: [
+    { id: 1, label: '制冷' },
+    { id: 2, label: '制暖' },
   ],
 })
 //#endregion

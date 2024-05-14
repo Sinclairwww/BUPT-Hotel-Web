@@ -85,6 +85,7 @@ import { nextTick } from 'vue'
 import { useThrottleFn } from '@vueuse/core'
 import screenfull from 'screenfull'
 import Pagination from '@/common/Pagination/index.vue'
+import { log } from 'console';
 const emit = defineEmits(['expand-change'])
 const props = defineProps({
   request: {

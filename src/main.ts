@@ -14,7 +14,7 @@ import ElementPlus from 'element-plus'
 
 // import 'core-js' //需要按需引入
 import directives from './directive/index'
-
+import Carousel from "v3-carousel"; // 引入首页轮播
 const app = createApp(App)
 
 // 注册全局ICON
@@ -28,5 +28,5 @@ app.use(router)
 app.use(store)
 app.use(plugins)
 app.use(directives)
-
+app.use(Carousel)
 app.mount('#app')

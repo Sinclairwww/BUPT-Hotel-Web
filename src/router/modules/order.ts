@@ -7,7 +7,7 @@ export default [
     component: Layout,
     meta: {
       icon: 'component',
-      title: '订单中心',
+      title: '空调信息',
     },
     // redirect: '/order/list',
     children: [
@@ -18,7 +18,7 @@ export default [
         component: () => import('@/views/order/List.vue'),
         meta: {
           icon: 'list',
-          title: '订单信息',
+          title: '运行信息',
         },
       },
       {
@@ -29,7 +29,7 @@ export default [
         component: () => import('@/views/order/Detail.vue'),
         meta: {
           icon: 'list',
-          title: '订单详情',
+          title: '空调详情',
           divide: true,
         },
       },

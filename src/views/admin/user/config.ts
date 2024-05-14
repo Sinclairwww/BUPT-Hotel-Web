@@ -1,56 +1,36 @@
 import dayjs from 'dayjs'
 export const tableColumns = [
   {
-    label: '用户名',
-    prop: 'username',
+    label: '房间号',
+    prop: 'room',
   },
   {
-    label: '姓名',
-    prop: 'nickname',
+    label: '模式',
+    prop: 'mode',
   },
   {
-    label: '手机号',
-    prop: 'phone',
+    label: '风速',
+    prop: 'speed',
   },
   {
-    label: '角色',
-    prop: 'roles',
+    label: '温度',
+    prop: 'temperature',
   },
   {
-    label: '创建日期',
-    prop: 'createTime',
-    formatter: (row: any, column: any, value: any) => {
-      return value ? dayjs(value).format('YYYY-MM-DD HH:mm') : ''
-    },
+    label: '在线状态',
+    prop: 'onlineStatus'
   },
 ]
 
 export const filterFields: Array<FilterFieldType> = [
   {
-    label: '用户名',
-    model: 'username',
+    label: '房间号',
+    model: 'room',
     componentName: 'el-input',
     componentProps: {
-      placeholder: '请输入用户名',
+      placeholder: '请输入房间号',
       clearable: true,
     },
   },
-  {
-    label: '姓名',
-    model: 'nickname',
-    componentName: 'el-input',
-    componentProps: {
-      placeholder: '请输入姓名',
-      clearable: true,
-    },
-  },
-  {
-    label: '手机号',
-    model: 'phone',
-    componentName: 'el-input',
-    componentProps: {
-      placeholder: '请输入手机号',
-      clearable: true,
-    },
-  },
+
 ]

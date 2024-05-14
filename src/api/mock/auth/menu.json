@@ -10,12 +10,12 @@
     },
     {
       "id": 1,
-      "label": "后台用户中心",
+      "label": "空调管理中心",
       "authKey": "back_user_center",
       "children": [
         {
           "id": 11,
-          "label": "用户管理",
+          "label": "空调管理",
           "authKey": "back_user_manage",
           "buttons": [
             {
