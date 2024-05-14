@@ -1,3 +1,5 @@
+<!-- 导航栏 -->
+
 <template>
   <div class="navbar">
     <Hamburger
@@ -11,19 +13,6 @@
 
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
-        <a
-          target="_blank"
-          href="https://github.com/mayuxian/vue3-admin-template/"
-        >
-          <SvgIcon
-            name="github-fill"
-            size="23"
-            class="right-menu-item hover-effect"
-        /></a>
-        <Screenfull id="screenfull" class="right-menu-item hover-effect" />
-        <el-tooltip content="设置大小" effect="dark" placement="bottom">
-          <SizeSelect id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
       </template>
       <PersonalCenter style="line-height: 50px; margin-left: 20px" />
     </div>
@@ -33,8 +22,8 @@
 <script lang="ts" setup>
 import Breadcrumb from './Breadcrumb/index.vue'
 import Hamburger from './Hamburger/index.vue'
-import Screenfull from './Screenfull/index.vue'
-import SizeSelect from './SizeSelect/index.vue'
+// import Screenfull from './Screenfull/index.vue'
+// import SizeSelect from './SizeSelect/index.vue'
 import PersonalCenter from './PersonalCenter.vue'
 import { useAppStore } from '@/store/modules/app'
 const appStore = useAppStore()
