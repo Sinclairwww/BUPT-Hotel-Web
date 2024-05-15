@@ -13,30 +13,38 @@
       label-width="80px"
       label-position="left"
     >
-      <el-form-item prop="username" label="用户名">
-        <el-input
-          v-model.trim="data.username"
-          :placeholder="'请输入'"
-          :disabled="isEidtUser"
-        />
+    <el-form-item prop="room" label="房间号" >
+    <el-text  class="mx-1">
+     {{ data.room }}
+    </el-text>
+    </el-form-item>
+
+
+
+      <el-form-item label="温度">
+          <el-input-number v-model="data.temperature" :min="16" :max="30"  />
       </el-form-item>
-      <el-form-item prop="phone" label="手机号码">
-        <el-input
-          v-model.trim="data.phone"
-          placeholder="请输入"
-          :disabled="isEidtUser"
-        />
-      </el-form-item>
-      <el-form-item prop="nickname" label="姓名">
-        <el-input v-model.trim="data.nickname" :placeholder="'请输入'" />
+      <el-form-item label="风速">
+          <el-input-number v-model="data.speed" :min="1" :max="5" />
       </el-form-item>
     </el-form>
+
+    <el-form-item label="工作模式">
+        <el-select v-model="data.mode" placeholder="Select" size="large" width="200px">
+            <el-option v-for="item in options.mode" :key="item.value" :label="item.label" :value="item.value" />
+        </el-select>
+    </el-form-item>
+
+    <el-form-item label="空调状态">
+      <el-select v-model="data.state" placeholder="Select" size="large" width="200px">
+        <el-option v-for="item in options.state" :key="item.value" :label="item.label" :value="item.value" />
+      </el-select>
+    </el-form-item>
+
     <template #footer>
       <span>
+        <el-button :loading="submitLoading" type="primary" @click="onSubmit">确认</el-button>
         <el-button @click="onCancel">取消</el-button>
-        <el-button :loading="submitLoading" type="primary" @click="onSubmit"
-          >确认</el-button
-        >
       </span>
     </template>
   </el-dialog>
@@ -47,6 +55,7 @@ import adminApi from '@/api/admin-user'
 import { isPhone } from '@/libs/utils'
 import { useUserStore } from '@/store/modules/user'
 import { isValidUsername } from '@/libs/validate'
+
 const userStore = useUserStore()
 const submitLoading = ref(false)
 const formRef = ref()
@@ -124,12 +133,35 @@ const rules = {
   ],
 }
 const createForm = () => ({
-  username: '',
-  phone: '',
-  nickname: '',
+  room: '',
+  speed: 1,
+  temperature: 24,
+  state: '',
+  mode: '',
+
 })
 const data = reactive(createForm())
-
+const options = {
+    state: [
+      {
+        label: '开机',
+        value: 'on',
+      },
+      {
+        label: '关机',
+        value: 'off',
+      },
+    ],
+    mode: [
+    {
+      label: '制冷',
+      value: 'cool',
+    },
+    {
+      label: '制暖',
+      value: 'warm',
+    },]
+  }
 const visible = ref(false)
 watch(
   () => props.visible,
@@ -141,10 +173,12 @@ watch(
   () => props.userInfo,
   (val: any) => {
     isEidtUser.value = !!Object.keys(props.userInfo || {}).length
+    console.log(val)
     title.value = isEidtUser.value ? '编辑用户' : '新增用户'
-    data.username = val.username
-    data.phone = val.phone
-    data.nickname = val.nickname
+    data.room = val.room
+    data.speed = val.speed
+    data.temperature = val.temperature
+
   }
 )
 
@@ -152,24 +186,30 @@ const onCancel = () => {
   visible.value = false
   emit('update:visible', false)
 }
+
 const onSubmit = async () => {
   await unref(formRef)?.validate()
   try {
     if (isEidtUser.value) {
-      // await adminApi.updateUser({
-      //   // userId: props.userInfo?.userId,
-      //   // nickname: data.nickname,
-      // })
+      await adminApi.updateUser({
+        room: data.room,
+        mode: data.mode,
+        speed: data.speed,
+        temperature: data.temperature,
+        onlineStatus: data.state,
+      })
       if (userStore.userInfo?.userId === props.userInfo?.userId) {
         userStore.setUserInfo({
-          nickname: data.nickname,
+         
         })
       }
     } else {
       await adminApi.addUser({
-        nickname: data.nickname,
-        username: data.username,
-        phone: data.phone,
+        room: data.room,
+        mode: data.mode,
+        speed: data.speed,
+        temperature: data.temperature,
+        onlineStatus: data.state,
       })
     }
     visible.value = false

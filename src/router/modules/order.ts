@@ -1,7 +1,7 @@
 import Layout from '@/layout/index.vue'
 export default [
   {
-    path: '/order',
+    path: '/aircondition',
     name: 'order',
     authKey: 'order_center',
     component: Layout,
@@ -9,10 +9,10 @@ export default [
       icon: 'component',
       title: '空调信息',
     },
-    // redirect: '/order/list',
+    redirect: '/aircondition/control',
     children: [
       {
-        path: 'list',
+        path: 'control',
         name: 'orderList',
         authKey: 'order_list',
         component: () => import('@/views/order/List.vue'),

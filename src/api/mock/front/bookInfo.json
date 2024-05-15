@@ -1,0 +1,31 @@
+{
+  "rows":  [
+      {
+        "number": 101,
+        "livetime": 1400,
+        "customerName": "John",
+        "tel":1234567890,
+        "preLiveTime":1600
+      },
+        {
+            "number": 102,
+            "livetime": 1500,
+            "customerName": "Tom",
+            "tel":1234567890,
+            "preLiveTime":1600
+        },
+        {
+            "number": 103,
+            "livetime": 1600,
+            "customerName": "Jerry",
+            "tel":1234567890,
+            "preLiveTime":1600
+        }
+
+    ]
+  ,
+    "total": 3,
+    "page": 1,
+    "size": 3
+  
+}

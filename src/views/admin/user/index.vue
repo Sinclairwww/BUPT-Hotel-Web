@@ -103,8 +103,8 @@ async function onUpdateStatus(row: any) {
     //启用，停用转换 //1：启用；0：停用
     const newState = row.state === 0 ? 1 : 0
     await adminApi.updateUserStatus({
-      userId: row.userId,
-      state: newState,
+      room: row.room,
+      state: row.onlineStatus,
     })
     row.state = newState
 

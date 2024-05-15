@@ -1,5 +1,4 @@
-import http from '@/libs/http/index'
-const basePath = '/xxx-admin/'
+
 import authList from './mock/auth/list.json'
 import authMenu from './mock/auth/menu.json'
 export default {

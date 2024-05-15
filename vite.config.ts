@@ -71,18 +71,18 @@ export default defineConfig((config: UserConfig) => {
       jsxInject: "import { h } from 'vue';",
     },
     server: {
-      port: 5005, // 启动端口
-      open: false, // 启动后是否打开浏览器。建议关闭，首次打开的页面会热更新，否则每次都会打开新的tab页。
+      host: "10.129.111.81",
       cors: true, // 允许跨域
       // 本地代理接口
       proxy: {
         // dev环境
-        '/api': {
-          //TODO:更改为dev环境的后台服务地址
-          target: 'http://dev.domain.com',
-          changeOrigin: true,
-          // rewrite: path => path.replace(/^\/api/, ''),
-        },
+
+        '/api': {// 获取路径中包含了/api的请求
+          target: 'http://9159108jl8dx.vicp.fun', // 后台服务器所在地址
+          changeOrigin: true, // 修改源
+          rewrite: (path) => path.replace(/^\/api/, '') // /api替换成空
+        }
+
         // test环境
         // '/api': {
         //   target: 'https://test.domain.com',

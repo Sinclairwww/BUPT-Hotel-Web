@@ -11,27 +11,35 @@ export default {
   getUserDetail(userId?: string) {
     return Promise.resolve(userDetail)
   },
-  addUser(params: { username: string; nickname: string; phone: string }) {
+  addUser(params: {
+    room: string;
+    mode: string;
+    speed: number;
+    temperature: number;
+    onlineStatus: string;
+  }) {
     return Promise.resolve({ code: 200, msg: 'success', data: {} })
   },
   updateUser(params: {
     room: string;
     mode: string;
-    speed: string;
-    temperature: string;
+    speed: number;
+    temperature: number;
     onlineStatus: string;
   }) {
     return Promise.resolve({ code: 200, msg: 'success', data: {} })
   },
-  updateUserStatus(params: { userId: string; state: number }) {
+  updateUserStatus(params: { room: string; state: number }) {
     return Promise.resolve({ code: 200, msg: 'success', data: {} })
   },
-  getUserRoleList(userId: string) {
-    return Promise.resolve(userRoleList)
-  },
-  setUserRole(userId: string, roleidList: any[]) {
-    return Promise.resolve({ code: 200, msg: 'success', data: {} })
-  },
+
+  // getUserRoleList(userId: string) {
+  //   return Promise.resolve(userRoleList)
+  // },
+  // setUserRole(userId: string, roleidList: any[]) {
+  //   return Promise.resolve({ code: 200, msg: 'success', data: {} })
+  // },
+
   resetPassword(userId: string) {
     return Promise.resolve({ code: 200, msg: 'success', data: {} })
   },

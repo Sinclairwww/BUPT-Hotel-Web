@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { RouterLink, useLink } from 'vue-router'
+import { RouterLink } from 'vue-router'
 export default defineComponent({
   props: {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

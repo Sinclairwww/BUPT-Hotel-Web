@@ -1,23 +1,23 @@
 import Layout from '@/layout/index.vue'
 export default [
   {
-    path: '/admin',
+    path: '/front',
     name: 'admin',
     component: Layout,
     authKey: 'back_user_center',
     meta: {
       icon: 'component',
     },
-    redirect: '/admin/user',
+    redirect: 'front/checkin',
     children: [
       {
-        path: 'user',
+        path: 'checkin',
         name: 'adminUser',
         authKey: 'back_user_manage',
         meta: {
           icon: 'user',
         },
-        component: () => import('@/views/admin/user/index.vue'),
+        component: () => import('@/views/front/checkin.vue'),
       },
       {
         path: 'detail',
@@ -28,13 +28,13 @@ export default [
         component: () => import('@/views/admin/user/Detail.vue'),
       },
       {
-        path: 'role',
+        path: 'checkout',
         name: 'roleManage',
         authKey: 'back_role_manage',
         meta: {
           icon: 'peoples',
         },
-        component: () => import('@/views/admin/role/index.vue'),
+        component: () => import('@/views/front/checkout.vue'),
       },
       {
         path: 'auth',
