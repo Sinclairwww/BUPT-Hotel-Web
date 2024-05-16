@@ -34,6 +34,7 @@
 </template>
 
 <script setup lang="ts">
+import QR from '@/assets/QR.jpg'
 import { ref, reactive } from 'vue'
 import { $Register, $CheckAvailableRoom } from '@/api/front';
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -75,9 +76,19 @@ const confirm = () => {
 
 }
 
+
+
+
 const open = (room: string) => {
-    ElMessageBox.alert('您的房间号是: ' + room, '入住成功', {
+    const html = `
+        <h1>入住成功！</h1>
+        <h1>你的房间号是${room}</h1>
+        <h2>请扫描二维码</h2>
+        <img src = '${QR}' width="400"/>
+    `
+    ElMessageBox.alert(html, '', {
         confirmButtonText: 'OK',
+        dangerouslyUseHTMLString: true,
         callback: (action: Action) => {
             ElMessage({
                 type: 'info',
@@ -89,7 +100,7 @@ const open = (room: string) => {
 
 </script>
 
-<style scoped>
+<style>
 .dialog {
     display: flex;
     flex-direction: column;
@@ -127,5 +138,9 @@ const open = (room: string) => {
 
     cursor: pointer;
 
+}
+
+.msg-box {
+    width: 500px;
 }
 </style>

@@ -3,7 +3,6 @@
     <img class=image src="https://big.justeasy.cn/effectwater/202105/20210513103142_609c8f8eeb8ab.jpg" alt="checkout" />
     <el-button class="btn" plain @click="open">办理退房</el-button>
   </div>
-
 </template>
 
 <script lang="ts" setup>
