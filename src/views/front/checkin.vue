@@ -3,11 +3,11 @@
     <div class="container">
         <img class=image src="https://dimg04.c-ctrip.com/images/2008070000002p3r15CC0_W_1080_808_R5_D.jpg"
             alt="checkout" />
-        <el-button class="btn" plain @click="visible = true">办理入住</el-button>
+        <el-button class="btn" plain @click="visible.dialog = true">入住服务</el-button>
     </div>
 
 
-    <el-dialog v-model="visible" title="办理入住" width="15%">
+    <el-dialog v-model="visible.dialog" title="办理入住" width="15%" style="position: relative; top: 20%; left: 5%;">
         <span>
             <el-form-item label="身份号">
                 <el-input v-model="data.customer_id" placeholder="请输入身份号" clearable></el-input>
@@ -24,7 +24,7 @@
 
         <template #footer>
             <span>
-                <el-button @click="">取消</el-button>
+                <el-button @click="cancelCheckIn">取消</el-button>
                 <el-button type="primary" @click="confirm">确认</el-button>
             </span>
         </template>
@@ -39,13 +39,21 @@ import { ref, reactive } from 'vue'
 import { $Register, $CheckAvailableRoom } from '@/api/front';
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { Action } from 'element-plus'
-const visible = ref(false)
-
+const visible = reactive({
+    dialog: false
+})
 const data = reactive({
     "customer_id": '',
     "name": '',
     "password": ''
 })
+
+const cancelCheckIn = () => {
+    ElMessage({
+        type: 'info',
+        message: '取消退房',
+    })
+}
 
 const res = reactive({
     room: ''
@@ -59,7 +67,8 @@ const confirm = () => {
             "password": data.password
         }
     }
-    $Register(msg).then(res => {
+    $Register(msg).then(() => {
+        console.log('register success')
     })
 
     const params = {
@@ -80,6 +89,7 @@ const confirm = () => {
 
 
 const open = (room: string) => {
+    visible.dialog = false
     const html = `
         <h1>入住成功！</h1>
         <h1>你的房间号是${room}</h1>
@@ -97,6 +107,7 @@ const open = (room: string) => {
         },
     })
 }
+
 
 </script>
 

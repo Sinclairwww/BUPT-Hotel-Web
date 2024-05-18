@@ -1,1 +1,1 @@
-export const baseURL: string = 'http://9159108jl8dx.vicp.fun/'
+export const baseURL = 'http://9159108jl8dx.vicp.fun/'

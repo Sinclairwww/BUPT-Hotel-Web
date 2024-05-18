@@ -16,6 +16,11 @@ export const $check_bill = async (params: object) => {
     return res;
 }
 
+export const $check_detailed_record = async (params: object) => {
+    const res = await $post('/user/check_detailed_record', params);
+    return res;
+}
+
 export const $complete = async (params: object) => {
     const res = await $post('/user/complete', params);
     return res;
