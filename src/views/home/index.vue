@@ -4,7 +4,7 @@
   <text class="title">Welcome to BUPT Hotel</text>
   <br>
   <div class="block text-center">
-    <el-carousel height="680px" type="card" :interval="1500" motion-blur>
+    <el-carousel height="680px" type="card" :interval="1500">
       <el-carousel-item v-for="item in state.data" :key="item">
         <h3 class="small justify-center" text="2xl">
           <img :src="item" alt="" />

@@ -1,11 +1,11 @@
 import {
   createRouter,
   createWebHistory,
-  createWebHashHistory,
+
 } from 'vue-router'
 import constantRoutes from './constant-routes'
 import { useUserStore } from '@/store/modules/user'
-import { useAppStore } from '@/store/modules/app'
+// import { useAppStore } from '@/store/modules/app'
 import { useTagsViewStore } from '@/store/modules/tags-view'
 import routes from './routes'
 

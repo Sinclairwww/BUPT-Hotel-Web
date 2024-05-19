@@ -1,6 +1,6 @@
-import http from '@/libs/http/index'
-const basePath = '/xxxx-admin/'
-import userRoleList from './mock/admin/user-role-list.json'
+// import http from '@/libs/http/index'
+// const basePath = '/xxxx-admin/'
+
 import userList from './mock/aircondition.json'
 import userDetail from './mock/admin/user-detail.json'
 //主要为后台管理用户提供接口
