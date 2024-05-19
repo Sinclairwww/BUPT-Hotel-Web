@@ -1,0 +1,14 @@
+{
+    "admin": {
+        "username": "admin",
+        "password": "123456"
+    },
+    "front": {
+        "username": "front",
+        "password": "123456"
+    },
+    "manager": {
+        "username": "manager",
+        "password": "123456"
+    }
+}

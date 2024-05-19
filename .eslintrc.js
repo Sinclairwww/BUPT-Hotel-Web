@@ -26,6 +26,7 @@ module.exports = {
   rules: {
     // "off" -关闭规则,"warn" - 开启规则, 使用警告 程序不会退出,"error" - 开启规则, 使用错误 程序退出
     'prettier/prettier': 'off',
+    "@typescript-eslint/no-explicit-any": ["off"],
     // 'prettier/prettier': [
     //   'error',
     //   {

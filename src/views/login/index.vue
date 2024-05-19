@@ -1,40 +1,36 @@
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <template>
 
   <div class="login-container">
     <div class="login-box">
       <div class="title-container">
-        <h3 class="title">{{ title }}</h3>
+        <h3 class="title">BUPT酒店管理系统</h3>
       </div>
 
-      <el-form ref="accountLoginForm" :model="accountForm" :rules="accountFormRules" :inline-message="true">
+      <el-form ref="accountLoginForm" :model="query" :inline-message="true">
         <el-form-item label="" prop="position">
           <el-select v-model="query.position" placeholder="请选择职位">
-            <el-option-group v-for="group in options" :key="group.label" :label="group.label">
-              <el-option v-for="item in group.positions" :key="item.value" :label="item.label" :value="item.value">
-              </el-option>
-            </el-option-group>
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item prop="username" v-if="query.position != 'customer'">
-          <el-input v-model="accountForm.username" placeholder="请输入用户名" autocomplete="on" type="text" tabindex="1"
-            clearable>
+        <el-form-item prop="username">
+          <el-input v-model="query.loginName" placeholder="请输入用户名" autocomplete="on" type="text" tabindex="1" clearable>
             <template #prepend>
               <SvgIcon name="user" />
             </template>
           </el-input>
         </el-form-item>
-        <el-tooltip v-if="query.position != 'customer'" v-model:visible="capsTooltip" content="大写锁定(Caps lock is On)"
-          placement="right" manual>
-          <el-form-item prop="password">
-            <el-input type="password" v-model="accountForm.password" placeholder="请输入密码" autocomplete="on" show-password
-              clearable @keyup.enter="onLogin" name="password" tabindex="2" @keyup="checkCapslock"
-              @blur="capsTooltip = false">
-              <template #prepend>
-                <SvgIcon name="password" />
-              </template>
-            </el-input>
-          </el-form-item>
-        </el-tooltip>
+        <el-form-item prop="password">
+          <el-input type="password" v-model="query.password" placeholder="请输入密码" autocomplete="on" show-password
+            clearable @keyup.enter="onLogin" name="password" tabinde x="2">
+            @blur=" capsTooltip = false">
+            <template #prepend>
+              <SvgIcon name="password" />
+            </template>
+          </el-input>
+        </el-form-item>
         <el-form-item>
           <div class="agreement">
             <el-checkbox v-model="agreementChecked" style="color:white">我已阅读并同意</el-checkbox>
@@ -68,71 +64,32 @@
 <script lang="ts" setup>
 import loginApi from '@/api/login'
 import encryptor from '@/libs/utils/encryptor'
+// import admin from '@/router/modules/admin';
 import { useUserStore } from '@/store/modules/user'
 import { ElMessage } from 'element-plus'
+
 const router = useRouter()
 const userStore = useUserStore()
-const title = ref('BUPT酒店管理系统')
-enum LoginTypeEnum {
-  sms = 1,
-  account = 2,
-}
-const tabSelectKey = ref(LoginTypeEnum.account)
-
-const SMS_TIME = 60
 
 const loading = ref(false)
-const smsLoginForm = ref()
+
 const accountLoginForm = ref()
 
 const agreementDialogVisible = ref(false)
 const agreementChecked = ref(true)
 const protocolName = '用户隐私管理协议'
-
-const capsTooltip = ref(false)
 const options = [{
-  label: "外部",
-  positions: [{
-    label: "顾客",
-    value: "customer"
-  }]
-},
-{
-  label: "内部",
-  positions: [{
-    label: "管理员",
-    value: "admin"
-  },
-  {
-    label: "前台",
-    value: "front"
-  }
-  ]
+  label: "管理员",
+  value: "admin"
+}, {
+  label: "前台",
+  value: "front"
+}, {
+  label: "经理",
+  value: "manager"
 }
 ];
 
-const accountFormRules = {
-  username: [
-    { required: true, trigger: 'blur', message: '请填写用户名' },
-    {
-      trigger: 'blur',
-      validator: (rule: any, value: any, callback: any) => {
-        callback()
-      },
-    },
-  ],
-  password: [{ required: true, trigger: 'change', message: '请填写密码' }],
-}
-
-const smsForm = reactive({
-  phone: '18600000001',
-  code: '123456',
-})
-
-const accountForm = reactive({
-  username: 'admin',
-  password: '123456',
-})
 
 const query = reactive({
   loginName: "",
@@ -140,50 +97,29 @@ const query = reactive({
   position: ""
 });
 
-const visible = {
-  isCustomer: false
-}
 
 //#region  事件
 async function onLogin() {
 
   if (!agreementChecked.value)
     return ElMessage.warning('请阅读相关内容并勾选同意')
-  if (tabSelectKey.value === LoginTypeEnum.sms) {
-    await smsLoginForm.value.validate()
-  } else {
-    await accountLoginForm.value.validate()
-  }
+  await accountLoginForm.value.validate()
   try {
-    if (tabSelectKey.value === LoginTypeEnum.sms) {
-      const res = await loginApi.smsLogin(smsForm)
-      userStore.setToken(res?.data)
-    } else {
-      const res = await loginApi.userLogin({
-        username: accountForm?.username,
-        password: encryptor.sha256AndBase64(accountForm?.password),
-      })
-      userStore.setToken(res?.data)
-    }
+    const res = await loginApi.userLogin({
+      username: query.loginName,
+      password: encryptor.sha256AndBase64(query?.password),
+      position: query.position
+    })
+    userStore.setToken(res?.data)
     router.push({ path: userStore.preHistory || '/' })
   } catch (err: any) {
     ElMessage.error(err?.message)
   }
 }
 
-watch(query, () => {
-  if (query.position === 'customer') {
-    visible.isCustomer = true
-  } else {
-    visible.isCustomer = false
-  }
-})
 
 
-function checkCapslock(e: any) {
-  const key = e.key
-  capsTooltip.value = key && key.length === 1 && key >= 'A' && key <= 'Z'
-}
+
 //#endregion
 </script>
 
@@ -236,6 +172,7 @@ $theme-color: white;
         background: transparent;
         border: 0px;
         -webkit-appearance: none;
+        appearance: none;
         border-radius: 0px !important;
         padding: 0px;
         // padding: 12px 5px 12px 15px;
@@ -260,7 +197,10 @@ $theme-color: white;
       font-size: 14px !important;
       margin-top: 2px !important;
     }
+
   }
+
+
 
   .tab-box {
     :deep(.el-tabs__header) {

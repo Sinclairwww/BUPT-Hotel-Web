@@ -1,15 +1,9 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div
-      v-if="appStore.getDevice === 'mobile' && appStore.getSidebarOpened"
-      class="drawer-bg"
-      @click="onHandleClickOutside"
-    />
+    <div v-if="appStore.getDevice === 'mobile' && appStore.getSidebarOpened" class="drawer-bg"
+      @click="onHandleClickOutside" />
     <Sidebar class="sidebar-container" />
-    <div
-      :class="{ hasTagsView: settingsStore.needTagsView }"
-      class="main-container"
-    >
+    <div :class="{ hasTagsView: settingsStore.needTagsView }" class="main-container">
       <div :class="{ 'fixed-header': settingsStore.canFixedHeader }">
         <Navbar />
         <TagsView v-if="settingsStore.needTagsView" />
