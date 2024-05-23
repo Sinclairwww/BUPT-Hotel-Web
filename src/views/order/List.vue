@@ -1,16 +1,16 @@
 <template>
-  <ListPage
-    :request="request"
-    :table-columns="tableColumns"
-    :filter-fields="filterFields"
-    :filter-list-options="filterListOptions"
-  >
+  <ListPage :request="request" :table-columns="tableColumns" :filter-fields="filterFields"
+    :filter-list-options="filterListOptions">
     <template #columns-append>
       <el-table-column label="操作" fixed="right">
         <template #default="scope">
           <el-button type="primary" link @click="onGoDetail(scope.row)">
             空调详情
           </el-button>
+          <el-button type="primary" link @click="edit">
+            修改
+          </el-button>
+
         </template>
       </el-table-column>
     </template>
@@ -19,7 +19,7 @@
 
 <script lang="ts" setup name="orderList">
 import { ref, reactive } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import listJson from './list.json'
 
 //#region define
@@ -27,7 +27,7 @@ const router = useRouter()
 //#endregion
 //#region reactive data
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const bindInit = ref(function () {})
+const bindInit = ref(function () { })
 const tableColumns = ref([
   { label: '房间号', prop: 'room' },
   { label: '模式', prop: 'mode' },
@@ -62,6 +62,10 @@ const filterListOptions = ref({
     { id: 2, label: '制暖' },
   ],
 })
+
+const edit = () => {
+  console.log()
+}
 //#endregion
 //#region methods
 async function request(params: any, pageInit: any) {
