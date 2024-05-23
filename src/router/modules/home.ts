@@ -6,13 +6,15 @@ export default [
     component: Layout,
     redirect: '/dashboard',
     authKey: 'back_home',
-    meta: { title: '首页', icon: 'dashboard' },
+    meta: {
+      title: '首页', icon: 'dashboard', role: ['admin', 'front', 'manager']
+    },
     children: [
       {
         path: 'dashboard',
         name: 'dashboard',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页', affix: true },
+        meta: { title: '首页', affix: true, role: ['admin', 'front', 'manager'] },
       },
     ],
   },

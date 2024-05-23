@@ -8,7 +8,7 @@ export default [
     authKey: 'front',
     meta: {
       icon: 'component',
-      role: 'front'
+      role: ['front']
     },
     redirect: 'front/checkin',
     children: [
@@ -18,7 +18,7 @@ export default [
         authKey: 'check-in',
         meta: {
           icon: 'user',
-          role: 'front'
+          role: ['front']
         },
         component: () => import('@/views/front/checkin.vue'),
       },
@@ -28,7 +28,7 @@ export default [
         authKey: 'back_role_manage',
         meta: {
           icon: 'peoples',
-          role: 'front'
+          role: ['front']
         },
         component: () => import('@/views/front/checkout.vue'),
       },

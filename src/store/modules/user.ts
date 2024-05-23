@@ -11,6 +11,7 @@ export const useUserStore = defineStore({
     token: '',
     userInfo: null,
     preHistory: '',
+    roles: []
   }),
   getters: {
     getToken: (state: UserState): string => {
@@ -21,6 +22,9 @@ export const useUserStore = defineStore({
     getUserInfo: (state: UserState): UserInfo | null => {
       return state.userInfo as UserInfo
     },
+    getUserRole: (state: UserState): string => {
+      return state.roles[0] || ''
+    }
   },
   actions: {
     async logout() {
@@ -52,9 +56,12 @@ export const useUserStore = defineStore({
       const userRes = await loginApi.getUserInfo()
       this.setUserInfo(userRes?.data)
     },
-	setHistory(history: string) {
+    setHistory(history: string) {
       this.preHistory = history
     },
+    setRole(role: string) {
+      this.roles = [role]
+    }
   },
   persist: {
     enabled: true,

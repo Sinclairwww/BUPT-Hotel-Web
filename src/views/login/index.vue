@@ -111,6 +111,7 @@ async function onLogin() {
       position: query.position
     })
     userStore.setToken(res?.data)
+    userStore.setRole(query.position)
     router.push({ path: userStore.preHistory || '/' })
   } catch (err: any) {
     ElMessage.error(err?.message)

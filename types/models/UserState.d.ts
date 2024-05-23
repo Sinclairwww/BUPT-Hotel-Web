@@ -1,7 +1,8 @@
 interface UserState {
   token: string
   userInfo: UserInfo | null | any
-  preHistory: string
+  preHistory: string,
+  roles: string[]
 }
 interface UserInfo {
   id: number

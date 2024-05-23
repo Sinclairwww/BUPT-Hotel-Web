@@ -8,6 +8,7 @@ export default [
         meta: {
             icon: 'component',
             title: '空调信息',
+            role: ['manager']
         },
         redirect: '/manager-center/report-center',
         children: [
@@ -19,6 +20,7 @@ export default [
                 meta: {
                     icon: 'list',
                     title: '运行信息',
+                    role: ['manager']
                 },
             }
         ],
