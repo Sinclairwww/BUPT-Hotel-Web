@@ -15,7 +15,7 @@ export default [
                 path: 'report-center',
                 name: '报表中心',
                 authKey: 'report-center',
-                component: () => import('@/views/manager/index.vue'),
+                component: () => import('@/views/manager/manager.vue'),
                 meta: {
                     icon: 'list',
                     title: '运行信息',
