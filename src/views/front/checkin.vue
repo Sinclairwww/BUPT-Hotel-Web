@@ -10,6 +10,11 @@
 
     <el-dialog v-model="visible.dialog" title="办理入住" width="15%" style="position: relative; top: 20%; left: 5%;">
         <span>
+
+            <el-form-item label="房间号">
+                <el-input v-model="data.room_id" placeholder="请输入房间号" clearable></el-input>
+            </el-form-item>
+
             <el-form-item label="身份号">
                 <el-input v-model="data.customer_id" placeholder="请输入身份号" clearable></el-input>
             </el-form-item>
@@ -64,7 +69,8 @@ const visible = reactive({
 const data = reactive({
     "customer_id": '',
     "name": '',
-    "password": ''
+    "password": '',
+    "room_id": ''
 })
 
 const cancelCheckIn = () => {
@@ -94,6 +100,8 @@ const confirm = () => {
         "data": {
             "customer_id": Number(data.customer_id),
             "name": data.name,
+            "password": data.password,
+            "room_id": data.room_id
         }
     }
 
@@ -160,7 +168,7 @@ const freshRoom = async () => {
 }
 
 const queryRoom = async () => {
-    // await freshRoom()
+    await freshRoom()
     visible.form = true
 }
 

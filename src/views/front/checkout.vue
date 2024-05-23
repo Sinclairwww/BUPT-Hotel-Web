@@ -30,7 +30,7 @@
 
 <script lang="ts" setup>
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { $create_ac_bill, $complete, $create_ac_detailed, $create_accom_bill } from '@/api/front';
+import { $create_ac_bill, $complete, $create_ac_detailed_record, $create_accom_bill } from '@/api/front';
 const open = () => {
   visible.dialog = true;
 }
@@ -48,11 +48,11 @@ const choice = reactive({
   "options": [
     {
       value: '1',
-      label: '打印账单'
+      label: '空调账单'
     },
     {
       value: '2',
-      label: '打印详单'
+      label: '空调详单'
     },
     {
       value: '3',
@@ -60,7 +60,7 @@ const choice = reactive({
     },
     {
       value: '4',
-      label: '下载账单'
+      label: '住宿账单'
     }
   ]
 })
@@ -109,7 +109,7 @@ const call_download_bill = async () => {
 
 const call_check_bill = async () => {
   $create_ac_bill(data).then(res => {
-    console.log(res);
+    downloadFile(res.data.msg);
     // ElMessageBox.alert(`${res.data.url}`, '点击下载账单', {
     //   confirmButtonText: 'OK',
     //   callback: () => {
@@ -125,8 +125,8 @@ const call_check_bill = async () => {
 }
 
 const call_check_detailed_record = async () => {
-  $create_ac_detailed(data).then(res => {
-    console.log(res);
+  $create_ac_detailed_record(data).then(res => {
+    downloadFile(res.data.msg);
 
     // ElMessageBox.alert(`${res.data.url}`, '点击下载详单', {
     //   confirmButtonText: 'OK',
@@ -152,9 +152,9 @@ const call_complete = async () => {
 }
 
 
-// const downloadFile = (url: string) => {
-//   window.open(url);
-// }
+const downloadFile = (url: string) => {
+  window.open(url);
+}
 
 </script>
 

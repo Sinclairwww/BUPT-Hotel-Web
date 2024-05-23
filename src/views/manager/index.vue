@@ -15,12 +15,16 @@ import { $weekly_statistic_report } from '@/api/manager';
 
 const open = () => {
   $weekly_statistic_report().then(response => {
-    // console.log(response.data)
+    downloadFile(response.data.msg);
     ElMessage({
       type: 'success',
       message: '获取报表成功',
     })
   })
+}
+
+const downloadFile = (url: string) => {
+  window.open(url);
 }
 
 

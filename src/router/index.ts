@@ -30,6 +30,13 @@ router.beforeEach((to, from, next) => {
   if (!to.meta.noHistory) {
     userStore.setHistory(to.fullPath)
   }
+
+  // const role = to.meta.role
+  // if (roles && roles.indexOf(role) === -1) {
+  //   // 用户没有该路由需要的角色，禁止访问
+  //   next('/403')
+  // }
+
   if (to.meta.divide && !to.query.time) {
     //若跳转到是分裂页面，则query增加时间戳t，保持每次重新打开分裂的页签time都唯一
     to.query = to.query || {}

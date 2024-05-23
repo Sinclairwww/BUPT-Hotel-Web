@@ -16,8 +16,8 @@ export const $create_ac_bill = async (params: object) => {
     return res;
 }
 
-export const $create_ac_detailed = async (params: object) => {
-    const res = await $post('/user/create_ac_detailed', params);
+export const $create_ac_detailed_record = async (params: object) => {
+    const res = await $post('/user/create_ac_detailed_record', params);
     return res;
 }
 

@@ -32,8 +32,10 @@ const tableColumns = ref([
   { label: '房间号', prop: 'room' },
   { label: '模式', prop: 'mode' },
   { label: '风速', prop: 'speed' },
-  { label: '温度', prop: 'temperature' },
-  { label: '在线状态', prop: 'onlineState' },
+  { label: '当前温度', prop: 'current_temp' },
+  { label: '目标温度', prop: 'targetTemperature' },
+  { label: '调度状态', prop: 'service' },
+  { label: '花费', prop: 'cost' },
 ])
 const filterFields = ref([
   {
