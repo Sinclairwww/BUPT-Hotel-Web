@@ -52,7 +52,7 @@
 
 import { reactive } from 'vue'
 import { $get_info, $set_default_param } from '@/api/aircondition-control';
-import { Action, ElMessageBox } from 'element-plus';
+import { ElMessageBox } from 'element-plus';
 const tableData = reactive([])
 const visible = reactive({
   dialog: false,
@@ -74,14 +74,14 @@ const setDefault = () => {
     ElMessageBox.alert('设置成功', '成功', {
       confirmButtonText: 'OK',
       callback: () => {
-        visible.value = false
+        visible.dialog = false
       }
     })
   }).catch(() => {
     ElMessageBox.alert('设置失败', '失败', {
       confirmButtonText: 'OK',
       callback: () => {
-        visible.value = false
+        visible.dialog = false
       }
     })
   })
@@ -125,17 +125,7 @@ const freshTable = async () => {
   }
 }
 
-const open = () => {
-  ElMessageBox.alert('This is a message', 'Title', {
-    confirmButtonText: 'OK',
-    callback: (action: Action) => {
-      ElMessage({
-        type: 'info',
-        message: `action: ${action}`,
-      })
-    },
-  })
-}
+
 freshTable()
 
 </script>

@@ -15,7 +15,7 @@ export default [
         path: 'control',
         name: '空调信息',
         authKey: 'control',
-        component: () => import('@/views/order/List.vue'),
+        component: () => import('@/views/admin/admin.vue'),
         meta: {
           icon: 'list',
           title: '运行信息',
