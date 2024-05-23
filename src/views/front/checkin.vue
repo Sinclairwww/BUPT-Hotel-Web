@@ -156,7 +156,6 @@ const roomTable = reactive([
         "roomNo": "5",
         "isAvailable": false
     }
-
 ])
 
 const freshRoom = async () => {

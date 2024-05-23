@@ -13,14 +13,14 @@ export default [
     children: [
       {
         path: 'control',
-        name: '空调管理',
+        name: '空调信息',
         authKey: 'control',
         component: () => import('@/views/order/List.vue'),
         meta: {
           icon: 'list',
           title: '运行信息',
         },
-      }
+      },
     ],
   },
 ]
