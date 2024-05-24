@@ -20,6 +20,11 @@ const open = () => {
       type: 'success',
       message: '获取报表成功',
     })
+  }).catch(() => {
+    ElMessage({
+      type: 'error',
+      message: '获取报表失败',
+    })
   })
 }
 
