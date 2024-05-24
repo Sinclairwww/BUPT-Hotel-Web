@@ -53,7 +53,17 @@
 import { reactive } from 'vue'
 import { $get_info, $set_default_param } from '@/api/aircondition-control';
 import { ElMessageBox } from 'element-plus';
-const tableData = reactive([])
+
+interface TableType {
+  room: string,
+  mode: string,
+  target_temp: number,
+  current_temp: number,
+  speed: string,
+  service: string,
+  cost: number
+}
+const tableData = reactive<TableType[]>([])
 const visible = reactive({
   dialog: false,
   table: false
@@ -114,11 +124,11 @@ const freshTable = async () => {
       const data = {
         "room": i.toString(),
         "mode": "",
-        "target_temp": "",
-        "current_temp": "",
+        "target_temp": 0,
+        "current_temp": 0,
         "speed": "",
         "service": "未入住",
-        "cost": ""
+        "cost": 0
       }
       tableData.push(data)
     })

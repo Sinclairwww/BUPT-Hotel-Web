@@ -135,15 +135,19 @@ const open = (room: string) => {
     })
 }
 
-const roomTable = reactive([])
+interface roomType {
+    roomNO: string,
+    isAvailable: string
+}
+const roomTable = reactive<roomType[]>([])
 
 const freshRoom = async () => {
     roomTable.splice(0, roomTable.length)
     for (let i = 1; i <= 5; i++) {
         const response = await $available_room({ "msg": i });
         roomTable.push({
-            roomNo: i.toString(),
-            isAvailable: String(response.data.msg)
+            "roomNO": i.toString(),
+            "isAvailable": String(response.data.msg)
         })
     }
     visible.form = true
