@@ -1,36 +1,27 @@
-
 import Layout from '@/layout/index.vue'
 export default [
   {
-    path: '/front',
-    name: 'admin',
+    path: '/air-condition',
+    name: 'air-condition',
+    authKey: 'air-condition',
     component: Layout,
-    authKey: 'front',
     meta: {
       icon: 'component',
-      role: ['front']
+      title: '空调信息',
+      role: ['admin']
     },
-    redirect: 'front/checkin',
+    redirect: '/air-condition/control',
     children: [
       {
-        path: 'check-in',
-        name: 'check-in',
-        authKey: 'check-in',
+        path: 'control',
+        name: '空调信息',
+        authKey: 'control',
+        component: () => import('@/views/admin/admin.vue'),
         meta: {
-          icon: 'user',
-          role: ['front']
+          icon: 'list',
+          title: '运行信息',
+          role: ['admin']
         },
-        component: () => import('@/views/front/checkin.vue'),
-      },
-      {
-        path: 'check-out',
-        name: 'check-out',
-        authKey: 'back_role_manage',
-        meta: {
-          icon: 'peoples',
-          role: ['front']
-        },
-        component: () => import('@/views/front/checkout.vue'),
       },
     ],
   },
