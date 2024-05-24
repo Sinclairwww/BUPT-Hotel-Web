@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <img class=image src="/src/assets/admin.jpg" alt="checkout" />
-    <el-button class="btn1" @click="visible.table = true">查看空调情况</el-button>
+    <el-button class="btn1" @click="beginFresh">查看空调情况</el-button>
     <el-button class="btn2" @click="visible.dialog = true">设置缺省参数</el-button>
   </div>
 
@@ -126,7 +126,15 @@ const freshTable = async () => {
 }
 
 
-freshTable()
+const beginFresh = () => {
+  visible.table = true
+  // freshTable()
+  setInterval(() => {
+    if (visible.table) {
+      freshTable()
+    }
+  }, 5000)
+}
 
 </script>
 <style>
