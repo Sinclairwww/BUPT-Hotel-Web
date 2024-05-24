@@ -7,14 +7,14 @@ export default [
     redirect: '/dashboard',
     authKey: 'back_home',
     meta: {
-      title: '首页', icon: 'dashboard', role: ['admin', 'front', 'manager']
+      title: '首页', icon: 'dashboard', noCheck: true,
     },
     children: [
       {
         path: 'dashboard',
         name: 'dashboard',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页', affix: true, role: ['admin', 'front', 'manager'] },
+        meta: { title: '首页', noCheck: true },
       },
     ],
   },

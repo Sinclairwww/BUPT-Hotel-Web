@@ -25,7 +25,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  //开启进度条
   NProgress.start()
+
+  //用户历史记录
   const userStore = useUserStore()
   if (!to.meta.noHistory) {
     userStore.setHistory(to.fullPath)
@@ -57,9 +60,9 @@ router.beforeEach((to, from, next) => {
     //需要登录，检查是否已登录
     next({ path: '/login' })
     NProgress.done()
-  } else if (roles && roles.indexOf(role) === -1) {
+  } else if (!to.meta.noCheck && roles && roles.indexOf(role) === -1 && to.path !== '/401') {
     // 用户没有该路由需要的角色，禁止访问
-    next('/401')
+    next('/error/401')
   } else {
     next()
     NProgress.done()

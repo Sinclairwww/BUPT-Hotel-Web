@@ -67,12 +67,8 @@ export const useUserStore = defineStore({
     enabled: true,
     strategies: [
       {
-        storage: localStorage, // $localStorage,
-        paths: ['token'], //可以选择保存的字段  其余的不保存
-      },
-      {
-        storage: sessionStorage,
-        paths: ['preHistory'], //可以选择保存的字段  其余的不保存
+        storage: sessionStorage, // $localStorage,
+        paths: ['token', 'roles', 'preHistory'], //可以选择保存的字段  其余的不保存
       },
     ],
   },
