@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <img class=image src="https://big.justeasy.cn/effectwater/202105/20210513103142_609c8f8eeb8ab.jpg" alt="checkout" />
-    <el-button class="btn" plain @click="open">结账服务</el-button>
+    <el-button class="btn" plain @click="visible.dialog = true">结账服务</el-button>
     <el-dialog v-model="visible.dialog" style="width: 300px; position: relative; top: 23%; left: 5%;">
 
 
@@ -29,11 +29,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import { $create_ac_bill, $complete, $create_ac_detailed_record, $create_accom_bill } from '@/api/front';
-const open = () => {
-  visible.dialog = true;
-}
+
 
 const data = reactive({
   "msg": ''
@@ -91,16 +89,16 @@ const confirm = () => {
 
 const call_download_bill = async () => {
   $create_accom_bill(data).then(res => {
-    console.log(res);
-    ElMessageBox.alert(`${res.data.msg}`, '点击下载账单', {
-      confirmButtonText: 'OK',
-      callback: () => {
-        ElMessage({
-          type: 'info',
-          message: `下载账单成功`,
-        })
-      },
-    });
+    downloadFile(res.data.msg);
+    ElMessage({
+      message: '住宿账单下载成功！',
+      type: 'success',
+    })
+  }).catch(() => {
+    ElMessage({
+      type: 'error',
+      message: '住宿账单下载失败'
+    })
 
   });
 }
@@ -110,33 +108,31 @@ const call_download_bill = async () => {
 const call_check_bill = async () => {
   $create_ac_bill(data).then(res => {
     downloadFile(res.data.msg);
-    // ElMessageBox.alert(`${res.data.url}`, '点击下载账单', {
-    //   confirmButtonText: 'OK',
-    //   callback: () => {
-    //     ElMessage({
-    //       type: 'info',
-    //       message: `下载账单成功`,
-    //     })
-    //   },
-    // }
-    // );
+    ElMessage({
+      message: '空调账单下载成功！',
+      type: 'success',
+    })
   }
-  );
+  ).catch(() => {
+    ElMessage({
+      type: 'error',
+      message: '空调账单下载失败'
+    })
+  });
 }
 
 const call_check_detailed_record = async () => {
   $create_ac_detailed_record(data).then(res => {
     downloadFile(res.data.msg);
-
-    // ElMessageBox.alert(`${res.data.url}`, '点击下载详单', {
-    //   confirmButtonText: 'OK',
-    //   callback: () => {
-    //     ElMessage({
-    //       type: 'info',
-    //       message: `下载账单成功`,
-    //     })
-    //   },
-    // })
+    ElMessage({
+      message: '空调详单下载成功！',
+      type: 'success',
+    })
+  }).catch(() => {
+    ElMessage({
+      type: 'error',
+      message: '空调详单下载失败'
+    })
   });
 }
 
@@ -147,7 +143,11 @@ const call_complete = async () => {
       type: 'success',
       message: '退房成功'
     })
-
+  }).catch(() => {
+    ElMessage({
+      type: 'error',
+      message: '退房失败'
+    })
   });
 }
 

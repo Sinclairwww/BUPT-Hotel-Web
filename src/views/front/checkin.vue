@@ -3,7 +3,7 @@
     <div class="container">
         <img class=image src="https://dimg04.c-ctrip.com/images/2008070000002p3r15CC0_W_1080_808_R5_D.jpg"
             alt="checkout" />
-        <el-button class="btn1" plain @click="queryRoom">房间情况</el-button>
+        <el-button class="btn1" plain @click="beginFresh">房间情况</el-button>
         <el-button class="btn2" plain @click="visible.dialog = true">入住服务</el-button>
     </div>
 
@@ -135,41 +135,30 @@ const open = (room: string) => {
     })
 }
 
-const roomTable = reactive([
-    {
-        "roomNo": "1",
-        "isAvailable": false
-    },
-    {
-        "roomNo": "2",
-        "isAvailable": false
-    },
-    {
-        "roomNo": "3",
-        "isAvailable": false
-    },
-    {
-        "roomNo": "4",
-        "isAvailable": false
-    },
-    {
-        "roomNo": "5",
-        "isAvailable": false
-    }
-])
+const roomTable = reactive([])
 
 const freshRoom = async () => {
+    roomTable.splice(0, roomTable.length)
     for (let i = 1; i <= 5; i++) {
         const response = await $available_room({ "msg": i });
-        roomTable[i - 1].isAvailable = response.data.msg;
+        roomTable.push({
+            roomNo: i.toString(),
+            isAvailable: String(response.data.msg)
+        })
     }
     visible.form = true
 }
 
-const queryRoom = async () => {
-    await freshRoom()
+const beginFresh = () => {
+    // freshRoom()
     visible.form = true
+    setInterval(() => {
+        if (visible.form) {
+            freshRoom()
+        }
+    }, 5000)
 }
+
 
 </script>
 
